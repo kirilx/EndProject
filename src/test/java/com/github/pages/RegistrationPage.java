@@ -1,6 +1,7 @@
 package com.github.pages;
 
 import com.github.base.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.UUID;
 
 public class RegistrationPage extends BasePage {
 
@@ -52,7 +54,7 @@ public class RegistrationPage extends BasePage {
 
 
     @FindBy(className = "password-validity-pill-fail")
-    private WebElement passwordErrorValidityIndicator;
+    private WebElement passwordErrorValidityIndicatorRed;
 
     @FindBy(xpath = "//*[@id='password-err']/div/span[2]")
     private WebElement passwordErrorValidityIndicatorYellow;
@@ -65,6 +67,7 @@ public class RegistrationPage extends BasePage {
 
 
 
+
     private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
     private static final String DIGITS = "0123456789";
@@ -72,88 +75,107 @@ public class RegistrationPage extends BasePage {
 
     private static final SecureRandom random = new SecureRandom();
 
+    @Step("Check if the registration form is displayed")
     public boolean isRegistrationFormDisplayed() {
         return registrationForm.isDisplayed();
     }
 
+    @Step("Click the Sign Up button")
     public void clickSignUpButton() {
         signUpButton.click();
     }
 
+    @Step("Set email ")
     public void setEmail(String email) {
         waitToBeClickable(By.id("email"));
         emailInputField.clear();
         emailInputField.sendKeys(email);
     }
 
+    @Step("Click the continue button for email")
     public void clickButton() {
         waitToBeClickable(By.cssSelector(" #email-container .js-continue-button"));
         continueButtonEmail.click();
     }
 
+    @Step("Click the continue button for password")
     public void clickButtonPassword() {
         waitToBeClickable(By.cssSelector("#password-container .js-continue-button"));
         continueButtonPassword.click();
     }
 
+    @Step("Set password ")
     public void setPassword(String password) {
         passwordInputField.clear();
         passwordInputField.sendKeys(password);
     }
 
+    @Step("Set username")
     public void setUsername(String username) {
         waitToBeClickable(By.cssSelector("#login"));
         usernameId.clear();
         usernameId.sendKeys(username);
     }
 
+    @Step("Click the continue button for username")
     public void clickContinueButtonForId() {
         waitToBeClickable(By.cssSelector("#username-container .js-continue-button"));
         continueButtonId.click();
     }
 
+    @Step("Get email error message")
     public String getEmailErrorMessage() {
         return emailErrorMessage.getText();
     }
 
 
+    @Step("Get password error message")
     public String getPasswordErrorMessage() {
         return passwordErrorMessage.getText();
     }
 
+    @Step("Get username error message")
     public String getUsernameErrorMessageText() {
         return usernameInvalidSymbolErrorMessage.getText();
     }
 
+    @Step("Get username too long error message")
     public String getUsernameTooLongErrorMessage() {
         return usernameTooLongError.getText();
 
     }
-
+    @Step("Check if password validity indicator (red) is displayed")
     public boolean isPasswordValidityShortDisplayed() {
-        return passwordErrorValidityIndicator.isDisplayed();
+        return passwordErrorValidityIndicatorRed.isDisplayed();
     }
 
+    @Step("Get password error message text")
     public String getPasswordErrorMessageText() {
         return passwordErrorMessageText.getText();
     }
 
+    @Step("Check if password validity indicator (yellow) is displayed")
     public boolean isPasswordValidityShortDisplayedYellow() {
         return passwordErrorValidityIndicatorYellow.isDisplayed();
     }
 
+    @Step("Click the checkbox")
     public void clickCheckbox() {
         checkbox.click();
     }
 
+    @Step("Check if the checkbox is selected")
     public boolean isCheckboxSelected() {
         return checkbox.isSelected();
-
     }
+
+
+    @Step("Click the continue button for the checkbox")
     public void clickContinueCheckboxButton() {
         continueButtonCheckbox.click();
 }
     //Генериране на неправилни пароли + правелен емайл
+    @Step("Generate an invalid password")
     public String generateInvalidPassword() {
         int length = 4; // Short password length
 
@@ -176,7 +198,7 @@ public class RegistrationPage extends BasePage {
 
         return password.toString();
     }
-
+    @Step("Export email and password pairs to CSV file ")
     public void exportEmailPasswordPairsToCSV(int numPairs, String filePath) {
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.append("Email,InvalidPassword\n");
@@ -190,7 +212,7 @@ public class RegistrationPage extends BasePage {
             e.printStackTrace();
         }
     }
-
+    @Step("Generate a random email address")
     private String generateRandomEmail() {
         StringBuilder email = new StringBuilder();
         for (int i = 0; i < 8; i++) {
@@ -199,4 +221,5 @@ public class RegistrationPage extends BasePage {
         email.append("@example.com"); // Use a common domain for simplicity
         return email.toString();
     }
+
 }

@@ -4,6 +4,7 @@ import Utils.CsvReader;
 import com.github.base.MainTest;
 import com.github.pages.RegistrationPage;
 import com.opencsv.exceptions.CsvException;
+import io.qameta.allure.Epic;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -11,7 +12,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 import java.util.Arrays;
-
+@Epic("Registration")
 public class RegistrationPageTest extends MainTest {
 
     @Test(dataProvider = "invalid-email", priority = 1)

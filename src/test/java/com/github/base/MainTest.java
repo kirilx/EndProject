@@ -77,7 +77,7 @@ public class MainTest {
             File screenshotFile = ts.getScreenshotAs(OutputType.FILE);
             String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
             String fileName = "Screenshot_" + timestamp + ".png";
-            Path path = Paths.get("./Screenshots", fileName);
+            Path path = Paths.get("/Screenshots", fileName);
             try {
                 Files.copy(screenshotFile.toPath(), path);
                 Allure.addAttachment("Screenshot on Failure", "image/png", Files.newInputStream(path), ".png");
@@ -85,8 +85,7 @@ public class MainTest {
                 e.printStackTrace();
             }
         }
-
-        //DriverFactory.quitDriver();
+        DriverFactory.quitDriver();
     }
 
 }
