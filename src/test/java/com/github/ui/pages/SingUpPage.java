@@ -1,6 +1,6 @@
-package com.github.pages;
+package com.github.ui.pages;
 
-import com.github.base.BasePage;
+import com.github.ui.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

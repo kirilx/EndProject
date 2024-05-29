@@ -1,7 +1,7 @@
-package com.github.base;
+package com.github.ui.base;
 
 import Driver.DriverFactory;
-import com.github.pages.RegistrationPage;
+import com.github.ui.pages.RegistrationPage;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -77,8 +77,14 @@ public class MainTest {
             File screenshotFile = ts.getScreenshotAs(OutputType.FILE);
             String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
             String fileName = "Screenshot_" + timestamp + ".png";
-            Path path = Paths.get("/Screenshots", fileName);
+
+            // Constructing the relative path to the 'Screenshots' directory
+            Path directory = Paths.get(System.getProperty("user.dir"), "Screenshots");
+            Path path = Paths.get(directory.toString(), fileName);
+
             try {
+                // Create the directory if it doesn't exist
+                Files.createDirectories(directory);
                 Files.copy(screenshotFile.toPath(), path);
                 Allure.addAttachment("Screenshot on Failure", "image/png", Files.newInputStream(path), ".png");
             } catch (IOException e) {
@@ -87,5 +93,4 @@ public class MainTest {
         }
         DriverFactory.quitDriver();
     }
-
-}
+    }

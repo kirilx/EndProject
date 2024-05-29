@@ -1,6 +1,6 @@
-package com.github.pages;
+package com.github.ui.pages;
 
-import com.github.base.BasePage;
+import com.github.ui.base.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.UUID;
 
 public class RegistrationPage extends BasePage {
 

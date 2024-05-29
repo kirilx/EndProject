@@ -1,8 +1,8 @@
-package com.github.tests;
+package com.github.ui.tests;
 
-import com.github.base.MainTest;
-import com.github.pages.RegistrationPage;
-import com.github.pages.SingUpPage;
+import com.github.ui.base.MainTest;
+import com.github.ui.pages.RegistrationPage;
+import com.github.ui.pages.SingUpPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;

@@ -1,8 +1,8 @@
-package com.github.tests;
+package com.github.ui.tests;
 
 import Utils.CsvReader;
-import com.github.base.MainTest;
-import com.github.pages.RegistrationPage;
+import com.github.ui.base.MainTest;
+import com.github.ui.pages.RegistrationPage;
 import com.opencsv.exceptions.CsvException;
 import io.qameta.allure.Epic;
 import org.testng.Assert;

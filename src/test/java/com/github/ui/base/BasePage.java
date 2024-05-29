@@ -1,4 +1,4 @@
-package com.github.base;
+package com.github.ui.base;
 
 import Driver.DriverFactory;
 import org.openqa.selenium.By;
@@ -56,11 +56,8 @@ public class BasePage {
     public void scrollIntoViewWithJS(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
-
-    // Switch to an iframe by locator
-    public void switchToIframe(By locator) {
-        WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-        driver.switchTo().frame(iframe);
+    public void switchToIframeWhenItReady(By locator) {
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
     }
 
     // Switch back to the default content
