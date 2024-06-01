@@ -13,10 +13,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-
+                // Clean the workspace before checking out the code
                 cleanWs()
                 // Checkout the code from the GitHub repository
-                  url: 'https://github.com/kirilx/EndProject.git'
+                git url: 'https://github.com/Dermenji/Selenium-WebDriver-Fundamentals-Advance.git'
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
                 script {
                     // Run Maven build and tests
                     try {
-                        bat  'mvn clean test'
+                        bat 'mvn clean test'
                     } catch (Exception e) {
                         // Mark the build as unstable if tests fail
                         currentBuild.result = 'UNSTABLE'
