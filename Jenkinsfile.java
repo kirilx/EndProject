@@ -25,7 +25,7 @@ pipeline {
                 script {
                     // Run Maven build and tests
                     try {
-                          'mvn clean test'
+                        bat  'mvn clean test'
                     } catch (Exception e) {
                         // Mark the build as unstable if tests fail
                         currentBuild.result = 'UNSTABLE'
