@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clean the workspace before checking out the code
+
                 cleanWs()
                 // Checkout the code from the GitHub repository
                   url: 'https://github.com/kirilx/EndProject.git'
