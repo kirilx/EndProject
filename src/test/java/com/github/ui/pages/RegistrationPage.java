@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.security.SecureRandom;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class RegistrationPage extends BasePage {
 
@@ -86,20 +87,20 @@ public class RegistrationPage extends BasePage {
 
     @Step("Set email ")
     public void setEmail(String email) {
-        waitToBeClickable(By.id("email"));
+        waitToBeClickable(emailInputField);
         emailInputField.clear();
         emailInputField.sendKeys(email);
     }
 
     @Step("Click the continue button for email")
     public void clickButton() {
-        waitToBeClickable(By.cssSelector(" #email-container .js-continue-button"));
+        waitToBeClickable(continueButtonEmail);
         continueButtonEmail.click();
     }
 
     @Step("Click the continue button for password")
     public void clickButtonPassword() {
-        waitToBeClickable(By.cssSelector("#password-container .js-continue-button"));
+        waitToBeClickable(continueButtonPassword);
         continueButtonPassword.click();
     }
 
@@ -111,14 +112,14 @@ public class RegistrationPage extends BasePage {
 
     @Step("Set username")
     public void setUsername(String username) {
-        waitToBeClickable(By.cssSelector("#login"));
+        waitToBeClickable(usernameId);
         usernameId.clear();
         usernameId.sendKeys(username);
     }
 
     @Step("Click the continue button for username")
     public void clickContinueButtonForId() {
-        waitToBeClickable(By.cssSelector("#username-container .js-continue-button"));
+        waitToBeClickable(continueButtonId);
         continueButtonId.click();
     }
 

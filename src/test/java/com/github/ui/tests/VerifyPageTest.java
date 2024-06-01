@@ -1,6 +1,6 @@
 package com.github.ui.tests;
 
-import Utils.CsvReader;
+import utils.CsvReader;
 import com.github.ui.pages.VerifyPage;
 import com.github.ui.base.MainTest;
 import com.github.ui.pages.RegistrationPage;
@@ -56,6 +56,7 @@ public class VerifyPageTest extends MainTest {
         softAssert.assertTrue(verifyPage.isMatchGameDisplayed(), "Match game is not displayed.");
         softAssert.assertTrue(verifyPage.isSubmitButtonDisplayed(), "Submit button is not displayed.");
         softAssert.assertTrue(verifyPage.isAudioButtonDisplayed(), "Audio button is not displayed.");
+
         verifyPage.switchToDefaultContent();
 
         softAssert.assertAll();

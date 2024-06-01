@@ -1,6 +1,6 @@
 package com.github.ui.base;
 
-import Driver.DriverFactory;
+import driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -38,8 +38,8 @@ public class BasePage {
     }
 
     // Wait for element to be clickable
-    public void waitToBeClickable(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    public void waitToBeClickable(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     // Wait for element to be enabled
@@ -56,8 +56,8 @@ public class BasePage {
     public void scrollIntoViewWithJS(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
-    public void switchToIframeWhenItReady(By locator) {
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
+    public void switchToIframeWhenItReady(WebElement iframeElement) {
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframeElement));
     }
 
     // Switch back to the default content

@@ -33,6 +33,9 @@ public class VerifyPage extends BasePage {
     @FindBy(css = "#game-core-frame")
     WebElement verificationChildSecondIframe;
 
+
+
+
    @Step("Get verify page text")
    public String getVerifyPageText() {
       return verifyPageElement.getText();
@@ -41,7 +44,7 @@ public class VerifyPage extends BasePage {
 
     @Step("Click verify button")
     public void clickVerifyButton() {
-        waitToBeClickable(By.xpath("//button[contains(text(),'Verify')]"));
+        waitToBeClickable(verifyButton);
         verifyButton.click();
     }
 
@@ -60,18 +63,18 @@ public class VerifyPage extends BasePage {
         return audioButton.isDisplayed();
     }
 
-    @Step("Switch to verification iframe")
+    @Step("Switch to verification iframe Parent")
     public void switchToParentIframe() {
-        switchToIframeWhenItReady(By.cssSelector("iframe[title='Please verify by completing this captcha.']"));
+        switchToIframeWhenItReady(verificationParentIframe);
     }
 
-    @Step("Switch to child iframe")
+    @Step("Switch to first child iframe")
     public void switchToChildIframe() {
-        switchToIframeWhenItReady(By.cssSelector("iframe[title='Verification challenge']"));
+        switchToIframeWhenItReady(verificationChildFirstIframe);
     }
 
     @Step("Switch to second child iframe")
     public void switchToSecondChildIframe() {
-        switchToIframeWhenItReady(By.cssSelector("#game-core-frame"));
+        switchToIframeWhenItReady(verificationChildSecondIframe);
     }
 }

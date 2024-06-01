@@ -1,4 +1,4 @@
-package Driver;
+package driver;
 
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;

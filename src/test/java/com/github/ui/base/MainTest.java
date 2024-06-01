@@ -1,6 +1,6 @@
 package com.github.ui.base;
 
-import Driver.DriverFactory;
+import driver.DriverFactory;
 import com.github.ui.pages.RegistrationPage;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;

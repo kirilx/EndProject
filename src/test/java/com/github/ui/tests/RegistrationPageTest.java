@@ -1,6 +1,6 @@
 package com.github.ui.tests;
 
-import Utils.CsvReader;
+import utils.CsvReader;
 import com.github.ui.base.MainTest;
 import com.github.ui.pages.RegistrationPage;
 import com.opencsv.exceptions.CsvException;
