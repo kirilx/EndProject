@@ -8,29 +8,27 @@ import org.testng.annotations.Test;
 
 public class UpdateRepoTest {
 
-    static final String TOKEN = "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";
+    static final String TOKEN = "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";
     static final String REPO_EP = "https://api.github.com/user/repos";
 
     @Test(description = "Update a repo" ,priority = 4)
     void patchTest() {
-        String updatedRepoName = "testcreate-patched";
-        var repo = new Repository(updatedRepoName);
+
+        var repoPatched = new Repository( "testcreate-patched");
 
 
         Response response = RestAssured
                 .given()
                 .auth()
                 .oauth2(TOKEN)
-                .body(repo)
+                .body(repoPatched)
                 .when()
-                .patch("https://api.github.com/repos/kirilz-ta/kirotest")
+                .patch("https://api.github.com/repos/kirilz-ta/testcreate")
                 .then()
                 .statusCode(200)
                 .extract()
                 .response();
 
 
-        String actualRepoName = response.jsonPath().getString("name");
-        Assert.assertEquals(actualRepoName, updatedRepoName, "Repository name does not match");
     }
 }

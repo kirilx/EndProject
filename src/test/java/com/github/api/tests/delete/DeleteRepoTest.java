@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.not;
 
 public class DeleteRepoTest {
 
-    static final String TOKEN = "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";
+    static final String TOKEN = "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";
     static final String REPO_EP ="https://api.github.com/user/repos" ;
 
     @Test(description = "Delete a repo" , priority = 5)

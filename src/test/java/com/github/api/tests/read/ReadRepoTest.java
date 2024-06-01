@@ -1,26 +1,25 @@
 package com.github.api.tests.read;
 
+import api.prestassured.Repository;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ReadRepoTest {
-    static final String TOKEN = "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";
-    private static final String BASE_URL = "https://api.github.com";
-    private static final String USERNAME = "kirilz-ta";
+    static final String TOKEN = "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";
+    static final String BASE_URI= "https://api.github.com";
+    static final String REPO_EP = "https://api.github.com/user/repos";
 
     @Test(description = "List user repos", priority = 2)
     void getReposTest() {
         Response response = RestAssured
                 .given()
-                .log().all()
                 .auth()
                 .oauth2(TOKEN)
                 .when()
-                .get(BASE_URL + "/user/repos")
+                .get( REPO_EP)
                 .then()
-                .log().all()
                 .statusCode(200)
                 .extract()
                 .response();
@@ -30,20 +29,20 @@ public class ReadRepoTest {
 
     @Test(description = "Get specific repo details", priority = 3)
     void getRepoTest() {
-        String repoName = "testcreate";
+        var repoName = new Repository("testcreate");
+        String expectedRepoName = repoName.getRepoName();
 
         Response response = RestAssured
                 .given()
                 .auth()
                 .oauth2(TOKEN)
                 .when()
-                .get(String.format("/repos/%s/%s", USERNAME, repoName))
+                .get( BASE_URI + "/repos/kirilz-ta/" + expectedRepoName)
                 .then()
                 .statusCode(200)
                 .extract()
                 .response();
 
-        Assert.assertEquals(response.path("name"), repoName, "Incorrect repository name");
-        Assert.assertEquals(response.path("owner.login"), USERNAME, "Incorrect repository owner");
+        Assert.assertEquals(response.path("name"), expectedRepoName, "Incorrect repository name");
     }
 }

@@ -8,4 +8,8 @@ package api.prestassured;
         public Repository(String name) {
             this.name = name;
         }
+
+        public String getRepoName() {
+            return name;
+        }
     }
