@@ -1,37 +1,42 @@
 package com.github.api.tests.delete;
 
+
+import com.github.api.base.ApiBase;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
+
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.not;
 
-public class DeleteRepoTest {
+public class DeleteRepoTest extends ApiBase {
 
-    static final String TOKEN = "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";
-    static final String REPO_EP ="https://api.github.com/user/repos" ;
+    static final String REPO_EP = "/repos/kirilz-ta/testcreate-updated";
 
-    @Test(description = "Delete a repo" , priority = 5)
+    @Test(description = "Delete a repo", priority = 6)
     void deleteTest() {
-        // Deleting the repository
-        RestAssured
+
+        Response deleteResponse = RestAssured
                 .given()
-                .auth()
-                .oauth2(TOKEN)
                 .when()
-                .delete("https://api.github.com/repos/kirilz-ta/testcreate-patched")
+                .delete(REPO_EP)
                 .then()
-                .statusCode(204);
+                .statusCode(204)
+                .extract()
+                .response();
 
 
-        given()
-                .auth()
-                .oauth2(TOKEN)
+        Response getResponse = given()
                 .when()
-                .get("https://api.github.com/repos/kirilz-ta/testcreate-patched")
+                .get(REPO_EP)
                 .then()
-                .statusCode(404) // Expecting 404 Not Found
-                .body("message", not(emptyOrNullString()));
+                .statusCode(404)
+                .body("message", not(emptyOrNullString()))
+                .extract()
+                .response();
+
+
     }
 }

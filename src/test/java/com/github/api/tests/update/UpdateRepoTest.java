@@ -1,34 +1,32 @@
 package com.github.api.tests.update;
 
-import api.prestassured.Repository;
+import api.restassuredpresets.Repository;
+import com.github.api.base.ApiBase;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.emptyOrNullString;
 
-public class UpdateRepoTest {
+public class UpdateRepoTest extends ApiBase {
 
-    static final String TOKEN = "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";
-    static final String REPO_EP = "https://api.github.com/user/repos";
+    static final String REPO_EP = "/repos/kirilz-ta/testcreate";
 
-    @Test(description = "Update a repo" ,priority = 4)
-    void patchTest() {
+    @Test(description = "Update a repo", priority = 5)
+    void updateTest() {
+        var repo = new Repository("testcreate-updated");
 
-        var repoPatched = new Repository( "testcreate-patched");
-
-
-        Response response = RestAssured
+        Response updateResponse = RestAssured
                 .given()
-                .auth()
-                .oauth2(TOKEN)
-                .body(repoPatched)
+                .header("Content-Type", "application/json")
+                .body(repo)
                 .when()
-                .patch("https://api.github.com/repos/kirilz-ta/testcreate")
+                .patch(REPO_EP)
                 .then()
                 .statusCode(200)
+                .body("name", not(emptyOrNullString()))
                 .extract()
                 .response();
-
 
     }
 }

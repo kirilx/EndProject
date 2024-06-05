@@ -1,7 +1,7 @@
 package com.github.ui.base;
 
 import driver.DriverFactory;
-import com.github.ui.pages.RegistrationPage;
+import com.github.ui.pages.GitHubSignupPage;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -28,8 +28,8 @@ public class MainTest {
 
     @BeforeClass
     public void generateInvalidPasswords() {
-        RegistrationPage registrationPage = new RegistrationPage();
-        registrationPage.exportEmailPasswordPairsToCSV(1, "src/test/resources/generated-invalid-short-passwords.csv");
+        GitHubSignupPage gitHubSignupPage = new GitHubSignupPage();
+        gitHubSignupPage.exportEmailPasswordPairsToCSV(1, "src/test/resources/generated-invalid-short-passwords.csv");
     }
     @BeforeMethod
     public void setUp() {
