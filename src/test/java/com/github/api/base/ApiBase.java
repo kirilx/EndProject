@@ -4,13 +4,29 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 public class ApiBase {
 
     static final String BASE_URI = "https://api.github.com";
-    static final String TOKEN = "  ";
+    static String TOKEN;
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws IOException {
+        Properties properties = new Properties();
+
+
+        try (FileInputStream input = new FileInputStream("src/test/resources/configapi.properties")) {
+            properties.load(input);
+        }
+
+        TOKEN = properties.getProperty("github.token");
+
+        if (TOKEN == null || TOKEN.isEmpty()) {
+            throw new IllegalStateException("GitHub token is not set in configapi.properties.");
+        }
 
         RestAssured.baseURI = BASE_URI;
         RestAssured.authentication = RestAssured.oauth2(TOKEN);
@@ -25,7 +41,6 @@ public class ApiBase {
 
         return response.getStatusCode() == 200;
     }
-
     public void deleteRepo(String user, String repoName) {
         RestAssured
                 .given()
@@ -35,4 +50,4 @@ public class ApiBase {
                 .then()
                 .statusCode(204);
     }
-}
+    }
