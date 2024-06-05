@@ -38,4 +38,4 @@ build/
 .DS_Store
 
 # Ignore all properties files in the config directory
-config/*.properties
+configapi/*.properties
