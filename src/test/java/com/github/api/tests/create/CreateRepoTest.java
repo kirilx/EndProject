@@ -23,6 +23,7 @@ public class CreateRepoTest extends ApiBase {
     void deleteRepoIfExistsTest() {
         if (doesRepoExist(username, repoName)) {
             deleteRepo(username, repoName);
+            System.out.println("Repository existed,and it's deleted automatically");
         } else {
             System.out.println("Repository does not exist, no need to delete.");
         }
