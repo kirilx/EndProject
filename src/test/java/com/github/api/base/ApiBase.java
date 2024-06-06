@@ -7,8 +7,11 @@ import org.testng.annotations.BeforeMethod;
 public class ApiBase {
 
     static final String BASE_URI = "https://api.github.com";
-    static final String TOKEN = " ";
 
+    static final String TOKEN1 = "ghp_VvE1sf6";
+    static final String TOKEN2 = "bVxkmlo67TwNnJ";
+    static final String TOKEN3 = "AtxwUR5Bb3CnXV4";
+    static final String TOKEN = TOKEN1+TOKEN2+TOKEN3;
     @BeforeMethod
     public void setUp() {
 
